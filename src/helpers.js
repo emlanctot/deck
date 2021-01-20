@@ -29,7 +29,15 @@ export const deckGeneration = function() {
   suits.forEach((suit) => {
     numbers.forEach((number) => {
       deck.push({
-        num: number, suit: suit, value: cardValue(number), color: cardColor(suit)
+        id: (deck.length + 1),
+        num: number,
+        suit: suit,
+        value: cardValue(number),
+        color: cardColor(suit),
+        x: 40,
+        y: 40,
+        faceUp: false,
+        zIndex: 0
       });
     })
   });
@@ -44,4 +52,5 @@ export const shuffle = function(deck) {
     deck[i] = deck[j];
     deck[j] = temp;
   }
+  return deck;
 }
