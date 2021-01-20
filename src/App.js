@@ -1,8 +1,8 @@
-import Main from './components/Main';
+import Deck from './components/Deck';
 
 function App() {
   return (
-    <Main />
+    <Deck />
   );
 }
 
