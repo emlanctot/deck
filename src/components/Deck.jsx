@@ -3,6 +3,8 @@ import Card from './Card';
 import { deckGeneration, shuffle } from '../helpers';
 
 const Deck = () => {
+  let shuffleSound = new Audio("/shuffle.wav");
+  let flipSound = new Audio("/flip.wav");
 
   const [deck, setDeck] = useState(deckGeneration());
   const [relativeCursor, setRelativeCursor] = useState({x: 0, y: 0});
@@ -14,10 +16,11 @@ const Deck = () => {
   }, [])
 
   const handleShuffleClick = () => {
+    shuffleSound.play();
     shuffle(deck).forEach((card, index) => {
       card.id = index;
-      card.x = 40;
-      card.y = 40;
+      card.x = (window.innerWidth / 2) - 55;
+      card.y = 60;
       card.zIndex = 0;
       card.faceUp = false;
     })
@@ -49,22 +52,30 @@ const Deck = () => {
   }
 
   const handleDoubleClick = (e) => {
+    flipSound.play();
     let clickedCard = e.target.id;
     deck[clickedCard].faceUp = !deck[clickedCard].faceUp;
     setDeck([...deck]);
   }
 
+  let tableStyle = {
+    backgroundColor: '#7aa157',
+    minHeight: '100vh'
+  }
+
   return(
-    <div>
+    <div style={tableStyle}>
       <button onClick={handleShuffleClick}>Shuffle!</button>
       {deck.map((card) => (
-        <Card 
-          card={card} 
-          handleUp={handleUp} 
-          handleDown={handleDown} 
-          handleDrag={handleDrag}
-          handleDoubleClick={handleDoubleClick}
-        />
+          <Card 
+            key={card.id}
+            card={card} 
+            handleUp={handleUp} 
+            handleDown={handleDown} 
+            handleDrag={handleDrag}
+            handleDoubleClick={handleDoubleClick}
+            dragging={dragging}
+          />
       ))}
 
 

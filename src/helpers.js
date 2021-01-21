@@ -34,8 +34,8 @@ export const deckGeneration = function() {
         suit: suit,
         value: cardValue(number),
         color: cardColor(suit),
-        x: 40,
-        y: 40,
+        x: 0,
+        y: 0,
         faceUp: false,
         zIndex: 0
       });

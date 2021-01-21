@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Card = ({card, handleUp, handleDown, handleDrag, handleDoubleClick}) => {
+const Card = ({card, handleUp, handleDown, handleDrag, handleDoubleClick, dragging}) => {
     let divStyle = {
-        height: '100px',
-        width: '70px',
+        height: '160px',
+        width: '110px',
         border: '1px solid black',
         borderRadius: '5px',
         color: card.color,
@@ -12,7 +12,8 @@ const Card = ({card, handleUp, handleDown, handleDrag, handleDoubleClick}) => {
         position: 'fixed',
         background: 'white',
         zIndex: card.zIndex,
-        userSelect: 'none'
+        userSelect: 'none',
+        cursor: dragging ? 'grabbing' : 'grab'
     };
     return (
         <div
